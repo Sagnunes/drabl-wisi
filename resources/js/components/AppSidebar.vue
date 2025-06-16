@@ -30,7 +30,7 @@ const footerNavItems: NavItem[] = [
     },
     {
         title: 'Utilizadores Estados',
-        href: '/status',
+        href: '/statuses',
         icon: Proportions,
         roles: [UserRole.ADMIN],
     }

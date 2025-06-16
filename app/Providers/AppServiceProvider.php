@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Interfaces\RoleInterface;
+use App\Interfaces\StatusInterface;
 use App\Repositories\EloquentRoleRepository;
+use App\Repositories\EloquentStatusRepository;
 use App\Repositories\EloquentUserRoleRepository;
 use App\Services\UserRoleService;
 use Illuminate\Support\ServiceProvider;
@@ -18,6 +20,9 @@ class AppServiceProvider extends ServiceProvider
         'UserRoles' => [
             RoleInterface::class => EloquentRoleRepository::class,
             UserRoleService::class => EloquentUserRoleRepository::class,
+        ],
+        'Statuses' => [
+            StatusInterface::class => EloquentStatusRepository::class,
         ]
     ];
 
