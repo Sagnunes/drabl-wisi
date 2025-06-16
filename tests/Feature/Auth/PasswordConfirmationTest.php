@@ -1,6 +1,11 @@
 <?php
 
 use App\Models\User;
+use Database\Seeders\StatusSeeder;
+
+beforeEach(function () {
+    \Pest\Laravel\seed(StatusSeeder::class);;
+});
 
 test('confirm password screen can be rendered', function () {
     $user = User::factory()->create();
