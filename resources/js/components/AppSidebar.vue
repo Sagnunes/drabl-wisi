@@ -3,6 +3,7 @@ import NavFooter from '@/components/NavFooter.vue';
 import NavMain from '@/components/NavMain.vue';
 import NavUser from '@/components/NavUser.vue';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
+import UserRole from '@/constants/UserRole';
 import { type NavItem } from '@/types';
 import { Link, usePage } from '@inertiajs/vue3';
 import { BookOpen, Folder, LayoutGrid, Proportions } from 'lucide-vue-next';
@@ -25,6 +26,7 @@ const footerNavItems: NavItem[] = [
         title: 'Perfis',
         href: '/roles',
         icon: Proportions,
+        roles: [UserRole.ADMIN],
     },
     {
         title: 'Github Repo',
@@ -48,6 +50,7 @@ const filterNavItemsByUserRoles = (items: NavItem[], userRoles: string[]): NavIt
 };
 
 const filteredMainNavItems = computed(() => filterNavItemsByUserRoles(mainNavItems, userRoles));
+const filteredFooterNavItems = computed(() => filterNavItemsByUserRoles(footerNavItems, userRoles));
 </script>
 
 <template>
@@ -69,7 +72,7 @@ const filteredMainNavItems = computed(() => filterNavItemsByUserRoles(mainNavIte
         </SidebarContent>
 
         <SidebarFooter>
-            <NavFooter :items="footerNavItems" />
+            <NavFooter :items="filteredFooterNavItems" />
             <NavUser />
         </SidebarFooter>
     </Sidebar>
