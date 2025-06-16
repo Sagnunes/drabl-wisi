@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->string('job_title')->nullable()->default('(sem categoria)');
             $table->string('gov_department')->nullable()->default('(sem departamento)');
+            $table->foreignIdFor(\App\Models\Status::class)->default(\App\UserStatusEnum::PENDING->value)->constrained()->nullOnDelete();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -29,15 +29,11 @@ const footerNavItems: NavItem[] = [
         roles: [UserRole.ADMIN],
     },
     {
-        title: 'Github Repo',
-        href: 'https://github.com/laravel/vue-starter-kit',
-        icon: Folder,
-    },
-    {
-        title: 'Documentation',
-        href: 'https://laravel.com/docs/starter-kits#vue',
-        icon: BookOpen,
-    },
+        title: 'Utilizadores Estados',
+        href: '/status',
+        icon: Proportions,
+        roles: [UserRole.ADMIN],
+    }
 ];
 
 const filterNavItemsByUserRoles = (items: NavItem[], userRoles: string[]): NavItem[] => {
