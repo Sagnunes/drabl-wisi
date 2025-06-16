@@ -19,7 +19,7 @@ class BaseRoleRequest extends FormRequest
     public function rules(): array {
         return [
             'name' => 'required|string|max:255',
-            'description' => 'string|max:255',
+            'description' => 'max:255',
         ];
     }
 }
