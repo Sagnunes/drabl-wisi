@@ -45,16 +45,16 @@ const submit = () => {
 
 <template>
     <AppLayout :breadcrumbs="breadcrumbs">
-        <Head title="Profile settings" />
+        <Head title="Definições de perfil" />
 
         <SettingsLayout>
             <div class="flex flex-col space-y-6">
-                <HeadingSmall title="Profile information" description="Update your name and email address" />
+                <HeadingSmall title="Informações do perfil" description="Atualize o seu nome e endereço de e-mail" />
 
                 <form @submit.prevent="submit" class="space-y-6">
                     <div class="grid gap-2">
                         <Label for="name">Name</Label>
-                        <Input id="name" class="mt-1 block w-full" v-model="form.name" required autocomplete="name" placeholder="Full name" />
+                        <Input id="name" class="mt-1 block w-full" v-model="form.name" required autocomplete="name" placeholder="Nome Completo" />
                         <InputError class="mt-2" :message="form.errors.name" />
                     </div>
 
@@ -67,13 +67,13 @@ const submit = () => {
                             v-model="form.email"
                             required
                             autocomplete="username"
-                            placeholder="Email address"
+                            placeholder="Endereço de Email"
                         />
                         <InputError class="mt-2" :message="form.errors.email" />
                     </div>
 
                     <Separator/>
-                    <HeadingSmall title="Job information" description="Update your job title and department" />
+                    <HeadingSmall title="Informações da profissão" description="Atualizar as informações respetivas a profissão" />
                     <div class="grid gap-2">
                         <Label for="job_title">Categoria</Label>
                         <Input id="job_title" class="mt-1 block w-full" v-model="form.job_title" required autocomplete="job_title" placeholder="Categoria Profissional" />
@@ -88,24 +88,24 @@ const submit = () => {
 
                     <div v-if="mustVerifyEmail && !user.email_verified_at">
                         <p class="-mt-4 text-sm text-muted-foreground">
-                            Your email address is unverified.
+                            O seu endereço de e-mail não está verificado.
                             <Link
                                 :href="route('verification.send')"
                                 method="post"
                                 as="button"
                                 class="text-foreground underline decoration-neutral-300 underline-offset-4 transition-colors duration-300 ease-out hover:decoration-current! dark:decoration-neutral-500"
                             >
-                                Click here to resend the verification email.
+                                Clique aqui para reenviar o e-mail de verificação.
                             </Link>
                         </p>
 
                         <div v-if="status === 'verification-link-sent'" class="mt-2 text-sm font-medium text-green-600">
-                            A new verification link has been sent to your email address.
+                            Foi enviado um novo link de verificação para o seu endereço de e-mail.
                         </div>
                     </div>
 
                     <div class="flex items-center gap-4">
-                        <Button :disabled="form.processing">Save</Button>
+                        <Button :disabled="form.processing">Guardar</Button>
 
                         <Transition
                             enter-active-class="transition ease-in-out"
@@ -113,7 +113,7 @@ const submit = () => {
                             leave-active-class="transition ease-in-out"
                             leave-to-class="opacity-0"
                         >
-                            <p v-show="form.recentlySuccessful" class="text-sm text-neutral-600">Saved.</p>
+                            <p v-show="form.recentlySuccessful" class="text-sm text-neutral-600">Guardado.</p>
                         </Transition>
                     </div>
                 </form>
