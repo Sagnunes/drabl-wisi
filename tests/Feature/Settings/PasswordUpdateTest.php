@@ -1,7 +1,12 @@
 <?php
 
 use App\Models\User;
+use Database\Seeders\StatusSeeder;
 use Illuminate\Support\Facades\Hash;
+
+beforeEach(function () {
+    \Pest\Laravel\seed(StatusSeeder::class);;
+});
 
 test('password can be updated', function () {
     $user = User::factory()->create();

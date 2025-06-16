@@ -1,5 +1,11 @@
 <?php
 
+use Database\Seeders\StatusSeeder;
+
+beforeEach(function () {
+    \Pest\Laravel\seed(StatusSeeder::class);;
+});
+
 test('registration screen can be rendered', function () {
     $response = $this->get('/register');
 

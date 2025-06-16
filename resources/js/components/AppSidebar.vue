@@ -6,7 +6,7 @@ import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, Sid
 import UserRole from '@/constants/UserRole';
 import { type NavItem } from '@/types';
 import { Link, usePage } from '@inertiajs/vue3';
-import { BookOpen, Folder, LayoutGrid, Proportions } from 'lucide-vue-next';
+import { LayoutGrid, Proportions } from 'lucide-vue-next';
 import { computed } from 'vue';
 import AppLogo from './AppLogo.vue';
 
@@ -29,15 +29,11 @@ const footerNavItems: NavItem[] = [
         roles: [UserRole.ADMIN],
     },
     {
-        title: 'Github Repo',
-        href: 'https://github.com/laravel/vue-starter-kit',
-        icon: Folder,
-    },
-    {
-        title: 'Documentation',
-        href: 'https://laravel.com/docs/starter-kits#vue',
-        icon: BookOpen,
-    },
+        title: 'Utilizadores Estados',
+        href: '/statuses',
+        icon: Proportions,
+        roles: [UserRole.ADMIN],
+    }
 ];
 
 const filterNavItemsByUserRoles = (items: NavItem[], userRoles: string[]): NavItem[] => {

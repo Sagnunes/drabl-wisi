@@ -1,6 +1,11 @@
 <?php
 
 use App\Models\User;
+use Database\Seeders\StatusSeeder;
+
+beforeEach(function () {
+    \Pest\Laravel\seed(StatusSeeder::class);;
+});
 
 test('profile page is displayed', function () {
     $user = User::factory()->create();
