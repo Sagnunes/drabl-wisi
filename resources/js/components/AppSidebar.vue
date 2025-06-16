@@ -6,7 +6,7 @@ import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, Sid
 import UserRole from '@/constants/UserRole';
 import { type NavItem } from '@/types';
 import { Link, usePage } from '@inertiajs/vue3';
-import { LayoutGrid, Proportions } from 'lucide-vue-next';
+import { LayoutGrid, Library, Proportions } from 'lucide-vue-next';
 import { computed } from 'vue';
 import AppLogo from './AppLogo.vue';
 
@@ -19,12 +19,24 @@ const mainNavItems: NavItem[] = [
         href: '/dashboard',
         icon: LayoutGrid,
     },
+    {
+        title: 'Coleção Digital',
+        href: '/colecao-digital',
+        icon: Library,
+        roles: [UserRole.DIGITAL_COLLECTION],
+    },
 ];
 
 const footerNavItems: NavItem[] = [
     {
         title: 'Perfis',
         href: '/roles',
+        icon: Proportions,
+        roles: [UserRole.ADMIN],
+    },
+    {
+        title: 'Fundos',
+        href: '/funds',
         icon: Proportions,
         roles: [UserRole.ADMIN],
     },

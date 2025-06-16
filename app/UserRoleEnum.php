@@ -15,7 +15,7 @@ enum UserRoleEnum: int
     {
         return match ($this) {
             self::ADMIN => 'Administrador',
-            self::DIGITAL_COLLECTION => 'Coleção Digital2',
+            self::DIGITAL_COLLECTION => 'Coleção Digital',
         };
     }
 }

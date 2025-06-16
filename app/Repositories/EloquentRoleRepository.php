@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Collection;
 class EloquentRoleRepository implements RoleInterface
 {
     /**
-     * The columns to select from the funds table
+     * The columns to select from the roles table
      */
     private const ROLE_LIST_COLUMNS = ['id', 'name', 'description', 'created_at', 'updated_at'];
 
