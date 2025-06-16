@@ -3,7 +3,6 @@
 namespace App\Interfaces;
 
 use App\Models\Role;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 
 interface RoleInterface
