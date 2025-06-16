@@ -3,10 +3,15 @@ import NavFooter from '@/components/NavFooter.vue';
 import NavMain from '@/components/NavMain.vue';
 import NavUser from '@/components/NavUser.vue';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
+import UserRole from '@/constants/UserRole';
 import { type NavItem } from '@/types';
-import { Link } from '@inertiajs/vue3';
-import { BookOpen, Folder, LayoutGrid } from 'lucide-vue-next';
+import { Link, usePage } from '@inertiajs/vue3';
+import { BookOpen, Folder, LayoutGrid, Proportions } from 'lucide-vue-next';
+import { computed } from 'vue';
 import AppLogo from './AppLogo.vue';
+
+const page = usePage();
+const userRoles = page.props.auth.roles as string[] | [];
 
 const mainNavItems: NavItem[] = [
     {
@@ -18,6 +23,12 @@ const mainNavItems: NavItem[] = [
 
 const footerNavItems: NavItem[] = [
     {
+        title: 'Perfis',
+        href: '/roles',
+        icon: Proportions,
+        roles: [UserRole.ADMIN],
+    },
+    {
         title: 'Github Repo',
         href: 'https://github.com/laravel/vue-starter-kit',
         icon: Folder,
@@ -28,6 +39,18 @@ const footerNavItems: NavItem[] = [
         icon: BookOpen,
     },
 ];
+
+const filterNavItemsByUserRoles = (items: NavItem[], userRoles: string[]): NavItem[] => {
+    return items.filter((item) => {
+        if (!item.roles) {
+            return true;
+        }
+        return item.roles.some((role) => userRoles.includes(role));
+    });
+};
+
+const filteredMainNavItems = computed(() => filterNavItemsByUserRoles(mainNavItems, userRoles));
+const filteredFooterNavItems = computed(() => filterNavItemsByUserRoles(footerNavItems, userRoles));
 </script>
 
 <template>
@@ -45,11 +68,11 @@ const footerNavItems: NavItem[] = [
         </SidebarHeader>
 
         <SidebarContent>
-            <NavMain :items="mainNavItems" />
+            <NavMain :items="filteredMainNavItems" />
         </SidebarContent>
 
         <SidebarFooter>
-            <NavFooter :items="footerNavItems" />
+            <NavFooter :items="filteredFooterNavItems" />
             <NavUser />
         </SidebarFooter>
     </Sidebar>
