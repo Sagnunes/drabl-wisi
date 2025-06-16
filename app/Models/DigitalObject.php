@@ -12,6 +12,7 @@ class DigitalObject extends Model
     use HasFactory;
 
     public $timestamps = false;
+    protected $fillable = ['title', 'fund_id', 'inventory_number', 'status', 'image_name', 'image_thumb','image_derivative'];
 
     /*
    * Get the fund that owns the resource.

@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\Interfaces\DigitalCollectionInterface;
 use App\Interfaces\FundInterface;
 use App\Interfaces\RoleInterface;
 use App\Interfaces\StatusInterface;
+use App\Repositories\EloquentDigitalCollectionRepository;
 use App\Repositories\EloquentFundRepository;
 use App\Repositories\EloquentRoleRepository;
 use App\Repositories\EloquentStatusRepository;
@@ -28,6 +30,9 @@ class AppServiceProvider extends ServiceProvider
         ],
         'Fund' => [
             FundInterface::class => EloquentFundRepository::class,
+        ],
+        'DigitalCollection' => [
+            DigitalCollectionInterface::class => EloquentDigitalCollectionRepository::class,
         ]
     ];
 

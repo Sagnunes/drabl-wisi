@@ -21,7 +21,7 @@ const mainNavItems: NavItem[] = [
     },
     {
         title: 'Coleção Digital',
-        href: '/digital-collection',
+        href: '/colecao-digital',
         icon: Library,
         roles: [UserRole.DIGITAL_COLLECTION],
     },

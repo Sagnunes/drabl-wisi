@@ -18,7 +18,7 @@ class DigitalCollectionService
         return $this->repository->getFundsWithOneDigitalObject();
     }
 
-    public function getDigitalObjectsByFund(Fund $fund, $search = null)
+    public function getDigitalObjectsByFund(Fund $fund, $search)
     {
         return $this->repository->getDigitalCollectionByFund($fund, $search)->paginate(10)->withQueryString();
     }

@@ -17,6 +17,7 @@ Route::middleware('auth')->group(function () {
     require __DIR__ . '/status.php';
     require __DIR__ . '/role.php';
     require __DIR__ . '/fund.php';
+    require __DIR__ . '/digital-collection.php';
 });
 
 require __DIR__ . '/settings.php';

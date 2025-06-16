@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Fund;
 use App\Services\DigitalCollectionService;
-use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Request;
@@ -19,7 +18,7 @@ class DigitalCollectionController extends Controller
 
     public function index()
     {
-        return Inertia::render('digital-collection/Index', ['fundWithOneResource' => $this->digitalCollectionService->getDigitalCollectionFunds()]);
+        return Inertia::render('digital-collection/Index', ['fundWithDigitalObject' => $this->digitalCollectionService->getDigitalCollectionFunds()]);
 
     }
 

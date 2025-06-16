@@ -7,12 +7,12 @@ use App\Models\DigitalObject;
 use App\Models\Fund;
 use Illuminate\Database\Eloquent\Collection;
 
-class EloquentDigitalCollection implements DigitalCollectionInterface
+class EloquentDigitalCollectionRepository implements DigitalCollectionInterface
 {
 
     public function getFundsWithOneDigitalObject(): Collection
     {
-        return Fund::with(['resources' => function ($query) {
+        return Fund::with(['digitalObjects' => function ($query) {
             $query->select('fund_id', 'image_thumb', 'image_name', 'id')
                 ->whereNotNull('image_thumb')
                 ->orderByRaw('RANDOM()')
@@ -22,7 +22,7 @@ class EloquentDigitalCollection implements DigitalCollectionInterface
 
     public function getDigitalCollectionByFund(Fund $fund, ?string $search = null)
     {
-        return DigitalObject::with('fund')
+        return DigitalObject::withFund($fund)
             ->when($search, fn($q) => $q->withSearch($search, $fund->id))
             ->ordered();
     }
