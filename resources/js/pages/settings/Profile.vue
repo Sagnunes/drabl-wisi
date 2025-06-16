@@ -10,6 +10,7 @@ import { Label } from '@/components/ui/label';
 import AppLayout from '@/layouts/AppLayout.vue';
 import SettingsLayout from '@/layouts/settings/Layout.vue';
 import { type BreadcrumbItem, type User } from '@/types';
+import { Separator } from '@/components/ui/separator';
 
 interface Props {
     mustVerifyEmail: boolean;
@@ -31,6 +32,8 @@ const user = page.props.auth.user as User;
 const form = useForm({
     name: user.name,
     email: user.email,
+    job_title: user.job_title,
+    gov_department: user.gov_department,
 });
 
 const submit = () => {
@@ -67,6 +70,20 @@ const submit = () => {
                             placeholder="Email address"
                         />
                         <InputError class="mt-2" :message="form.errors.email" />
+                    </div>
+
+                    <Separator/>
+                    <HeadingSmall title="Job information" description="Update your job title and department" />
+                    <div class="grid gap-2">
+                        <Label for="job_title">Categoria</Label>
+                        <Input id="job_title" class="mt-1 block w-full" v-model="form.job_title" required autocomplete="job_title" placeholder="Categoria Profissional" />
+                        <InputError class="mt-2" :message="form.errors.job_title" />
+                    </div>
+
+                    <div class="grid gap-2">
+                        <Label for="gov_department">Departamento</Label>
+                        <Input id="gov_department" class="mt-1 block w-full" v-model="form.gov_department" required autocomplete="gov_department" placeholder="Categoria Profissional" />
+                        <InputError class="mt-2" :message="form.errors.gov_department" />
                     </div>
 
                     <div v-if="mustVerifyEmail && !user.email_verified_at">
