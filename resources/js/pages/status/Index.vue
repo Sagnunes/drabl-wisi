@@ -79,8 +79,8 @@ const confirmDelete = () => {
             <div class="px-4 sm:px-6 lg:px-8">
                 <div class="sm:flex sm:items-center">
                     <div class="sm:flex-auto">
-                        <h1 class="text-base font-semibold text-gray-900">Todos os estados</h1>
-                        <p class="mt-2 text-sm text-gray-700">Uma lista de todos os os estados criados na plataforma.</p>
+                        <h1 class="text-base font-semibold text-primary/90">Todos os estados</h1>
+                        <p class="mt-2 text-sm text-primary/70">Uma lista de todos os os estados criados na plataforma.</p>
                     </div>
                     <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
                         <Button @click="handleCreateDialog">Novo Estado</Button>

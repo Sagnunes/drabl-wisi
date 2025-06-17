@@ -79,11 +79,11 @@ const confirmDelete = () => {
             <div class="px-4 sm:px-6 lg:px-8">
                 <div class="sm:flex sm:items-center">
                     <div class="sm:flex-auto">
-                        <h1 class="text-base font-semibold text-gray-900">Todos os fundos</h1>
-                        <p class="mt-2 text-sm text-gray-700">Uma lista de todos os os fundos criados na plataforma para a coleção digital.</p>
+                        <h1 class="text-base font-semibold text-primary/90">Todos os fundos</h1>
+                        <p class="mt-2 text-sm text-primary/70">Uma lista de todos os os fundos criados na plataforma para a coleção digital.</p>
                     </div>
                     <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                        <Button @click="handleCreateDialog">Novo Estado</Button>
+                        <Button @click="handleCreateDialog">Novo Fundo</Button>
                     </div>
                 </div>
                 <div class="mt-8 flow-root">
