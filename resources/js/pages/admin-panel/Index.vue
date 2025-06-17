@@ -24,14 +24,18 @@ const { getInitials } = useInitials();
 
 const dataFromUser = ref(null);
 const showConfirmStatusDialog = ref(false);
+const errorMessage = ref('');
+
 const handleConfirmStatusDialog = (user: any, status) => {
     dataFromUser.value = user;
     form.user_id = user.id;
     form.updatedStatus = status;
+    errorMessage.value = ''; // Clear any previous error messages
     showConfirmStatusDialog.value = true;
 };
 
 const cancelConfirmStatusDialog = () => {
+    errorMessage.value = ''; // Clear error messages when dialog is closed
     showConfirmStatusDialog.value = false;
 };
 
@@ -41,9 +45,21 @@ const form = useForm({
 });
 
 const confirmStatus = () => {
+    errorMessage.value = ''; // Clear any previous error messages
     form.post('/admin-panel/status', {
         onSuccess: () => {
             showConfirmStatusDialog.value = false;
+        },
+        onError: (errors) => {
+            console.log(errors);
+            // Handle validation errors
+            if (Object.keys(errors).length > 0) {
+                // If we have specific field errors, display them
+                errorMessage.value = Object.values(errors).flat().join(', ');
+            } else if (form.hasErrors) {
+                // If there's a general error message
+                errorMessage.value = form.errors.message || 'An error occurred. Please try again.';
+            }
         },
     });
 };
@@ -140,6 +156,8 @@ const confirmStatus = () => {
                                             <DialogDescription>
                                                 <div class="flex flex-col">
                                                     <p class="text-base">Tem a certeza que deseja {{dataFromUser?.status.name === UserStatus.ACTIVE ? 'suspender' : 'ativar'}} o utilizador <span class="font-bold">{{dataFromUser.name}}</span>?</p>
+                                                    <!-- Display error message if there is one -->
+                                                    <p v-if="errorMessage" class="mt-2 text-sm text-red-600">{{ errorMessage }}</p>
                                                 </div>
                                             </DialogDescription>
                                         </DialogHeader>
