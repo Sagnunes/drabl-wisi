@@ -17,7 +17,7 @@ class UserSeeder extends Seeder
         $user = User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
-            'status_id' => UserStatusEnum::APPROVED
+            'status_id' => UserStatusEnum::ACTIVE
         ]);
 
         $user->roles()->attach(1);

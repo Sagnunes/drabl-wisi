@@ -39,9 +39,4 @@ class EloquentRoleRepository implements RoleInterface
     {
         return $role->delete();
     }
-
-    public function checkIfRolesHaveUsersAttach(Role $role): bool
-    {
-        return $role->users()->exists();
-    }
 }

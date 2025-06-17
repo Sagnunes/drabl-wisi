@@ -47,7 +47,6 @@ class LoginRequest extends FormRequest
     {
         $messages = [
             \App\UserStatusEnum::PENDING->value => 'Account not activated. Contact administrator.',
-            \App\UserStatusEnum::REJECTED->value => 'Account was rejected. Contact administrator.',
             \App\UserStatusEnum::SUSPENDED->value => 'Account suspended. Contact administrator.',
         ];
 

@@ -5,13 +5,15 @@ namespace App\Services;
 use App\DTOs\RoleDTO;
 use App\Exceptions\RoleHasUsersException;
 use App\Interfaces\RoleInterface;
+use App\Interfaces\UserRoleInterface;
 use App\Models\Role;
 use Exception;
 
 readonly class RoleService
 {
     public function __construct(
-        private RoleInterface $repository
+        private RoleInterface   $roleRepository,
+        private UserRoleInterface $userRoleRepository
     )
     {
     }
@@ -30,7 +32,7 @@ readonly class RoleService
     public function getAllRoles(): array
     {
         try {
-            return $this->repository->all()
+            return $this->roleRepository->all()
                 ->map(fn(Role $role) => $this->toDto($role))
                 ->toArray();
         } catch (Exception $e) {
@@ -48,7 +50,7 @@ readonly class RoleService
     public function getRole(int $id): RoleDTO
     {
         try {
-            $role = $this->repository->find($id);
+            $role = $this->roleRepository->find($id);
             return $this->toDto($role);
         } catch (Exception $e) {
             throw new Exception("Failed to retrieve role: " . $e->getMessage());
@@ -65,7 +67,7 @@ readonly class RoleService
     public function createRole(RoleDTO $dto): RoleDTO
     {
         try {
-            $role = $this->repository->create([
+            $role = $this->roleRepository->create([
                 'name' => $dto->name,
                 'description' => $dto->description,
             ]);
@@ -86,7 +88,7 @@ readonly class RoleService
     public function updateRole(Role $role, RoleDTO $dto): RoleDTO
     {
         try {
-            $updatedRole = $this->repository->update($role, [
+            $updatedRole = $this->roleRepository->update($role, [
                 'name' => $dto->name,
                 'description' => $dto->description,
             ]);
@@ -106,12 +108,12 @@ readonly class RoleService
      */
     public function deleteRole(Role $role): bool
     {
-        if ($this->repository->checkIfRolesHaveUsersAttach($role)) {
+        if ($this->userRoleRepository->checkIfRolesHaveUsersAttach($role)) {
             throw new RoleHasUsersException("Não é possível eliminar este perfil '{$role->name}' porque tem utilizadores atribuidos.");
         }
 
         try {
-            return $this->repository->delete($role);
+            return $this->roleRepository->delete($role);
         } catch (Exception $e) {
             throw new Exception("Failed to delete role: " . $e->getMessage());
         }
