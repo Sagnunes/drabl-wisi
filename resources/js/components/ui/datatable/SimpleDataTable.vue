@@ -13,10 +13,10 @@ const handleDelete = (item: any) => {
 
 <template>
     <table class="min-w-full divide-y divide-gray-300">
-        <thead class="bg-gray-50">
+        <thead class="bg-background">
         <tr>
             <th scope="col"
-                class="py-3.5 pr-3 pl-4 text-left text-sm font-semibold text-gray-900 sm:pl-6"
+                class="py-3.5 pr-3 pl-4 text-left text-sm font-semibold text-primary/80 sm:pl-6"
                 v-for="column in columns" :key="column.key">{{ column.label }}
             </th>
             <th scope="col" class="relative py-3.5 pr-4 pl-3 sm:pr-6">
@@ -24,9 +24,9 @@ const handleDelete = (item: any) => {
             </th>
         </tr>
         </thead>
-        <tbody class="divide-y divide-gray-200 bg-white">
+        <tbody class="divide-y divide-gray-200 bg-background">
         <tr v-for="(row, index) in data" :key="index">
-            <td class="py-4 pr-3 pl-4 text-sm font-medium whitespace-nowrap text-gray-500 sm:pl-6"
+            <td class="py-4 pr-3 pl-4 text-sm font-medium whitespace-nowrap text-primary/70 sm:pl-6"
                 v-for="column in columns"
                 :key="column.key">
                 {{ row[column.key] }}
@@ -45,7 +45,7 @@ const handleDelete = (item: any) => {
             </td>
         </tr>
         <tr v-if="data.length === 0">
-            <td colspan="3" class="p-8 text-center text-muted-foreground">
+            <td colspan="3" class="p-8 text-center text-primary">
                 Sem registos
             </td>
         </tr>
