@@ -5,17 +5,25 @@ namespace App;
 enum UserStatusEnum: int
 {
     case PENDING = 1;
-    case APPROVED = 2;
-    case REJECTED = 3;
-    case SUSPENDED = 4;
+    case ACTIVE = 2;
+    case SUSPENDED = 3;
 
     public function getName(): string
     {
         return match ($this) {
             self::PENDING => 'Pendente',
-            self::APPROVED => 'Aprovado',
-            self::REJECTED => 'Rejeitado',
+            self::ACTIVE => 'Ativo',
             self::SUSPENDED => 'Suspenso',
         };
+    }
+
+    public static function fromName(string $name): ?self
+    {
+        foreach (self::cases() as $case) {
+            if ($case->getName() === $name) {
+                return $case;
+            }
+        }
+        return null;
     }
 }

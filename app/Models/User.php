@@ -67,4 +67,13 @@ class User extends Authenticatable
         }
         return $this->roles()->whereIn('name', $roleNames)->exists();
     }
+
+    public function setStatus(int $statusId): self
+    {
+        $this->status_id = $statusId;
+        $this->save();
+
+        return $this;
+    }
+
 }

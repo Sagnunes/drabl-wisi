@@ -16,6 +16,4 @@ interface RoleInterface
     public function update(Role $role, array $data): Role;
 
     public function delete(Role $role): bool;
-
-    public function checkIfRolesHaveUsersAttach(Role $role): bool;
 }

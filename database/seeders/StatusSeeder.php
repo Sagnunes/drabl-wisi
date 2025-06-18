@@ -13,8 +13,7 @@ class StatusSeeder extends Seeder
      */
     private const STATUS_LIST = [
         ['name' => 'Pendente', 'description' => 'À espera de revisão ou aprovação'],
-        ['name' => 'Aprovado', 'description' => 'Pedido foi aceite'],
-        ['name' => 'Rejeitado', 'description' => 'Pedido foi recusado'],
+        ['name' => 'Ativo', 'description' => 'Pedido foi aceite'],
         ['name' => 'Suspenso', 'description' => 'Acesso está temporariamente desativado'],
     ];
 

@@ -6,12 +6,14 @@ use App\Interfaces\DigitalCollectionInterface;
 use App\Interfaces\FundInterface;
 use App\Interfaces\RoleInterface;
 use App\Interfaces\StatusInterface;
+use App\Interfaces\UserRoleInterface;
+use App\Interfaces\UserStatusInterface;
 use App\Repositories\EloquentDigitalCollectionRepository;
 use App\Repositories\EloquentFundRepository;
 use App\Repositories\EloquentRoleRepository;
 use App\Repositories\EloquentStatusRepository;
 use App\Repositories\EloquentUserRoleRepository;
-use App\Services\UserRoleService;
+use App\Repositories\EloquentUserStatusRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,10 +25,11 @@ class AppServiceProvider extends ServiceProvider
 
         'UserRoles' => [
             RoleInterface::class => EloquentRoleRepository::class,
-            UserRoleService::class => EloquentUserRoleRepository::class,
+            UserRoleInterface::class => EloquentUserRoleRepository::class,
         ],
         'Statuses' => [
             StatusInterface::class => EloquentStatusRepository::class,
+            UserStatusInterface::class => EloquentUserStatusRepository::class,
         ],
         'Fund' => [
             FundInterface::class => EloquentFundRepository::class,

@@ -45,6 +45,12 @@ const footerNavItems: NavItem[] = [
         href: '/statuses',
         icon: Proportions,
         roles: [UserRole.ADMIN],
+    },
+    {
+        title: 'Painel Administração',
+        href: '/admin-panel',
+        icon: Proportions,
+        roles: [UserRole.ADMIN],
     }
 ];
 
