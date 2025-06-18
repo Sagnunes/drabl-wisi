@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Interfaces\RoleInterface;
 use App\Interfaces\UserRoleInterface;
 use App\Interfaces\UserStatusInterface;
 use App\Models\User;
@@ -25,6 +26,7 @@ readonly class AdministrationPanelService
     public function __construct(
         private UserStatusInterface $userStatusRepository,
         private UserRoleInterface   $userRoleRepository,
+        private RoleInterface       $roleRepository,
     )
     {
     }
@@ -45,15 +47,25 @@ readonly class AdministrationPanelService
     }
 
     /**
+     * Get all roles.
+     *
+     * @return Collection
+     */
+    public function getAllRoles(): Collection
+    {
+        return $this->roleRepository->all();
+    }
+
+    /**
      * Assign a role to a user.
      *
      * @param User $user The user to assign the role to
      * @param int $role_id The ID of the role to assign
      * @return array Array with information about the sync operation
      */
-    public function assignRoleToUser(User $user, int $role_id): array
+    public function assignRoleToUser(User $user, int $role_id): void
     {
-        return $this->userRoleRepository->assignRole($user, $role_id);
+       $this->userRoleRepository->assignRole($user, $role_id);
     }
 
     /**

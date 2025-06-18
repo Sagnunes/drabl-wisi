@@ -17,9 +17,9 @@ interface UserRoleInterface
      *
      * @param User $user The user to assign the role to
      * @param int $roleId The ID of the role to assign
-     * @return array Array with information about the sync operation
+     * @return void Array with information about the sync operation
      */
-    public function assignRole(User $user, int $roleId): array;
+    public function assignRole(User $user, int $roleId): void;
 
     /**
      * Remove a role from a user.

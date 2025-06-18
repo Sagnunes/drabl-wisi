@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UpdateUserStatusRequest;
 use App\Models\User;
 use App\Services\AdministrationPanelService;
-use App\UserStatusEnum;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 use Inertia\Response;
 use Throwable;
+use Illuminate\Http\Request;
 
 /**
  * Class AdministrationPanelController
@@ -40,7 +40,8 @@ class AdministrationPanelController extends Controller
     {
         return Inertia::render('admin-panel/Index',
             [
-                'users' => $this->administrationPanelService->allUserWithRelations()
+                'users' => $this->administrationPanelService->allUserWithRelations(),
+                'roles' => $this->administrationPanelService->getAllRoles()
             ]
         );
     }
@@ -82,5 +83,25 @@ class AdministrationPanelController extends Controller
             report($e); // Log the exception
             return redirect()->back()->with('error', 'An error occurred while updating the status: ' . $e->getMessage());
         }
+    }
+
+    public function assignRole(Request $request)
+    {
+        $user = User::findOrFail($request['user_id']);
+
+        foreach ($request['roles'] as $role) {
+            $this->administrationPanelService->assignRoleToUser($user, $role);
+        }
+        return redirect()->back();
+    }
+
+    public function revokeRole(Request $request)
+    {
+        $user = User::findOrFail($request['user_id']);
+
+        foreach ($request['roles'] as $role) {
+            $this->administrationPanelService->revokeRoleFromUser($user, $role);
+        }
+        return redirect()->back();
     }
 }

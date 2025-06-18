@@ -8,9 +8,9 @@ use App\Models\User;
 
 class EloquentUserRoleRepository implements UserRoleInterface
 {
-    public function assignRole(User $user, int $roleId): array
+    public function assignRole(User $user, int $roleId): void
     {
-        return $user->roles()->sync($roleId);
+        $user->roles()->attach($roleId);
     }
 
     public function removeRole(User $user, int $roleId): bool
