@@ -20,7 +20,7 @@ class EloquentDigitalCollectionRepository implements DigitalCollectionInterface
         }])->orderBy('acronym')->get();
     }
 
-    public function getDigitalCollectionByFund(Fund $fund, ?string $search = null)
+    public function getDigitalCollectionByFund(Fund $fund, ?string $search = null):Collection
     {
         return DigitalObject::withFund($fund)
             ->when($search, fn($q) => $q->withSearch($search, $fund->id))
