@@ -14,14 +14,14 @@ class EnsureUserHasRole
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next, string $role): Response
+    public function handle(Request $request, Closure $next, ...$role): Response
     {
         if (!Auth::check()) {
-            abort(403, 'Unauthorized action.');
+            return redirect()->route('login');
         }
 
-        if (!$request->user()->hasRole($role)) {
-            abort(403, 'Unauthorized action.');
+        if (!$request->user()->hasAnyRole($role)) {
+            return redirect()->route('dashboard');
         }
         return $next($request);
     }

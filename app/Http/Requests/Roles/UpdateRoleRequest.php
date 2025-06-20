@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Roles;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateRoleRequest extends BaseRoleRequest
 {
@@ -14,6 +15,8 @@ class UpdateRoleRequest extends BaseRoleRequest
      */
     public function rules(): array
     {
-        return array_merge(parent::rules(), []);
+        return array_merge(parent::rules(), [
+            'name' => Rule::unique('roles')->ignore($this->role()->name),
+        ]);
     }
 }

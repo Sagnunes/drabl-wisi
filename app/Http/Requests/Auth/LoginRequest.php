@@ -46,8 +46,8 @@ class LoginRequest extends FormRequest
     private function validateUserStatus(\App\Models\User $user): void
     {
         $messages = [
-            \App\UserStatusEnum::PENDING->value => 'Account not activated. Contact administrator.',
-            \App\UserStatusEnum::SUSPENDED->value => 'Account suspended. Contact administrator.',
+            \App\UserStatusEnum::PENDING->value => 'Conta não ativa. Contacte o  administrador.',
+            \App\UserStatusEnum::SUSPENDED->value => 'Conta suspensa. Contacte o administrador.',
         ];
 
         if (isset($messages[$user->status_id])) {

@@ -4,6 +4,8 @@ namespace App\Policies;
 
 use App\Models\Status;
 use App\Models\User;
+use App\UserRoleEnum;
+use App\UserStatusEnum;
 use Illuminate\Auth\Access\Response;
 
 class StatusPolicy
@@ -29,7 +31,10 @@ class StatusPolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        dd($user);
+        if ($user->hasRole(UserRoleEnum::ADMIN->getName())) {
+            return true;
+        }
     }
 
     /**

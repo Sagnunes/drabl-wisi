@@ -60,12 +60,15 @@ class User extends Authenticatable
         return $this->belongsTo(Status::class);
     }
 
-    public function hasRole($roleNames): bool
+
+    public function hasRole(string $role)
     {
-        if (is_string($roleNames)) {
-            $roleNames = [$roleNames];
-        }
-        return $this->roles()->whereIn('name', $roleNames)->exists();
+        return $this->roles->contains('name', $role);
+    }
+
+    public function hasAnyRole(array $roles): bool
+    {
+        return $this->roles()->whereIn('name', $roles)->exists();
     }
 
     public function setStatus(int $statusId): self

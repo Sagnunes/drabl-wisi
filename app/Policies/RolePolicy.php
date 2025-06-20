@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\Role;
 use App\Models\User;
+use App\UserRoleEnum;
 use Illuminate\Auth\Access\Response;
 
 class RolePolicy
@@ -29,7 +30,7 @@ class RolePolicy
      */
     public function create(User $user): bool
     {
-        return false;
+        return $user->hasRole(UserRoleEnum::ADMIN->getName());
     }
 
     /**

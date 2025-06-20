@@ -6,6 +6,7 @@ use App\Interfaces\DigitalCollectionInterface;
 use App\Models\DigitalObject;
 use App\Models\Fund;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Builder;
 
 class EloquentDigitalCollectionRepository implements DigitalCollectionInterface
 {
@@ -20,7 +21,7 @@ class EloquentDigitalCollectionRepository implements DigitalCollectionInterface
         }])->orderBy('acronym')->get();
     }
 
-    public function getDigitalCollectionByFund(Fund $fund, ?string $search = null):Collection
+    public function getDigitalCollectionByFund(Fund $fund, ?string $search = null): Builder
     {
         return DigitalObject::withFund($fund)
             ->when($search, fn($q) => $q->withSearch($search, $fund->id))

@@ -41,11 +41,12 @@ class HandleInertiaRequests extends Middleware
 
         return [
             ...parent::share($request),
+            'toast' => $request->session()->get('toast'),
             'name' => config('app.name'),
             'quote' => ['message' => trim($message), 'author' => trim($author)],
             'auth' => [
                 'user' => $request->user(),
-                'roles' => $request->user() ? $request->user()->roles->pluck('name') : []
+                'roles' => $request->user() ? $request->user()->roles->pluck('name')->toArray() : []
             ],
             'ziggy' => [
                 ...(new Ziggy)->toArray(),

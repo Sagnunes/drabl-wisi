@@ -4,6 +4,7 @@ import AppShell from '@/components/AppShell.vue';
 import AppSidebar from '@/components/AppSidebar.vue';
 import AppSidebarHeader from '@/components/AppSidebarHeader.vue';
 import type { BreadcrumbItemType } from '@/types';
+import Toast from '@/components/toast.vue';
 
 interface Props {
     breadcrumbs?: BreadcrumbItemType[];
@@ -19,6 +20,7 @@ withDefaults(defineProps<Props>(), {
         <AppSidebar />
         <AppContent variant="sidebar">
             <AppSidebarHeader :breadcrumbs="breadcrumbs" />
+            <Toast class="flex justify-end items-end"/>
             <slot />
         </AppContent>
     </AppShell>

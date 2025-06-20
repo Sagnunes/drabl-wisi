@@ -42,7 +42,7 @@ const cancelCreateDialog = () => {
 };
 
 const submitCreateForm = () => {
-    form.post('/roles', {
+    form.post(`/roles/${form}`, {
         onSuccess: () => {
             showCreateDialog.value = false;
             form.reset();

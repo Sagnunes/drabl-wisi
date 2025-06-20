@@ -24,10 +24,7 @@ class RoleHasUsersException extends Exception
      */
     public function render($request)
     {
-        if ($request->wantsJson() || $request->inertia()) {
-            return back()->withErrors(['role' => $this->getMessage()]);
-        }
-
         return back()->withErrors(['role' => $this->getMessage()]);
+
     }
 }

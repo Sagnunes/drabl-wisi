@@ -3,9 +3,16 @@
 namespace App\Http\Requests\Roles;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
 
 class StoreRoleRequest extends BaseRoleRequest
 {
+
+    public function authorize(): bool
+    {
+        return true;
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -13,6 +20,7 @@ class StoreRoleRequest extends BaseRoleRequest
      */
     public function rules(): array
     {
-        return array_merge(parent::rules(), []);
+        return array_merge(parent::rules(), [
+        ]);
     }
 }

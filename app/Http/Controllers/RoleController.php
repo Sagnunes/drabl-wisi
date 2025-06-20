@@ -40,6 +40,11 @@ class RoleController extends Controller
     public function store(StoreRoleRequest $request)
     {
         $this->roleService->createRole((RoleDTO::fromRequest($request->validated())));
+        $request->session()->flash('toast', [
+            'title' => 'Success',
+            'message' => 'Role created successfully!',
+            'type' => 'success'
+        ]);
         return redirect()->route('roles.index');
     }
 

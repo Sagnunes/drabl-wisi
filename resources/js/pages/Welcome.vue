@@ -3,6 +3,8 @@ import { imagePaths } from '@/constants/images_path';
 import { Head, Link } from '@inertiajs/vue3';
 import quickAccess from '@/composables/useQuickAccess';
 
+defineProps(['message'])
+
 </script>
 
 <template>

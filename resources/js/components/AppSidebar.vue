@@ -23,7 +23,7 @@ const mainNavItems: NavItem[] = [
         title: 'Coleção Digital',
         href: '/colecao-digital',
         icon: Library,
-        roles: [UserRole.DIGITAL_COLLECTION],
+        roles: [UserRole.ADMIN, UserRole.DIGITAL_COLLECTION],
     },
 ];
 
@@ -51,7 +51,7 @@ const footerNavItems: NavItem[] = [
         href: '/admin-panel',
         icon: Proportions,
         roles: [UserRole.ADMIN],
-    }
+    },
 ];
 
 const filterNavItemsByUserRoles = (items: NavItem[], userRoles: string[]): NavItem[] => {
