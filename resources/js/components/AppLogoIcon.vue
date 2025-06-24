@@ -14,5 +14,5 @@ defineProps<Props>();
 </script>
 
 <template>
-    <img :src="imagePaths.logo" alt="LOGO WISI SMALL">
+    <img :src="imagePaths.logo.src" :alt="imagePaths.logo.alt">
 </template>

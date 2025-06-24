@@ -1,11 +1,22 @@
-const STORAGE_BASE_PATH = '/storage/images';
-
 interface ImagePaths {
-    readonly logo: string;
-    readonly background: string;
+    logo:{
+        src: string;
+        alt: string;
+    },
+    welcomeCard:{
+        src: string;
+        alt: string;
+    }
 }
 
 export const imagePaths: ImagePaths = {
-    logo: `${STORAGE_BASE_PATH}/logo-wisi-small.png`,
-    background: `${STORAGE_BASE_PATH}/background_deposit.jpg`,
+    logo:{
+        src:'/images/logo-wisi-small.png',
+        alt:'logo-wisi'
+    },
+    welcomeCard:{
+        src:'/images/background_deposit.jpg',
+        alt:'welcome card image'
+    }
 };
+

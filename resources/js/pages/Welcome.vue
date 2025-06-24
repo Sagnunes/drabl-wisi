@@ -46,7 +46,7 @@ defineProps(['message'])
                 <div
                     class="flex-1 rounded-br-lg rounded-bl-lg bg-white p-6 pb-12 text-[13px] leading-[20px] shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] lg:rounded-tl-lg lg:rounded-br-none lg:p-20 dark:bg-[#161615] dark:text-[#EDEDEC] dark:shadow-[inset_0px_0px_0px_1px_#fffaed2d]"
                 >
-                    <img :src="imagePaths.logo" alt="LOGO WISI SMALL" />
+                    <img :src="imagePaths.logo.src" :alt="imagePaths.logo.alt" />
                     <h1 class="mb-1 font-medium">Web Informação Serviços Internos</h1>
                     <p class="mb-2 text-[#706f6c] dark:text-[#A1A09A]">
                         Uma plataforma interna desenvolvida para prestar apoio eficiente e centralizado aos serviços da
@@ -104,7 +104,7 @@ defineProps(['message'])
                 </div>
                 <div
                     class="relative -mb-px aspect-335/376 w-full shrink-0 overflow-hidden rounded-t-lg bg-[#7bc5f6]/15 bg-cover bg-center bg-no-repeat lg:mb-0 lg:-ml-px lg:aspect-auto lg:w-[438px] lg:rounded-t-none lg:rounded-r-lg dark:bg-[#1e2a38]"
-                    :style="{ backgroundImage: `url(${imagePaths.background})` }"
+                    :style="{ backgroundImage: `url(${imagePaths.welcomeCard.src})` }"
                 >
                     <div
                         class="absolute inset-0 rounded-t-lg shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] lg:overflow-hidden lg:rounded-t-none lg:rounded-r-lg dark:shadow-[inset_0px_0px_0px_1px_#fffaed2d]"
