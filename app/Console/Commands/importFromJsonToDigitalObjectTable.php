@@ -102,12 +102,18 @@ class importFromJsonToDigitalObjectTable extends Command
     {
         // Preload funds for efficient mapping
         $funds = Fund::pluck('id', 'acronym')->all();
-
+        $skippedFunds = 0;
         $processedData = [];
 
         foreach ($jsonData as $row) {
             // Skip rows missing required fields
             if (!$this->validateRequiredFields($row)) {
+                continue;
+            }
+
+            if (!isset($funds[$row['acronym']])) {
+                $this->warn("Skipping row - fund not found for acronym: " . $row['acronym']);
+                $skippedFunds++;
                 continue;
             }
 
@@ -122,7 +128,7 @@ class importFromJsonToDigitalObjectTable extends Command
                 'status' => $row['status'] ?? null,
             ];
         }
-
+        $this->info("Skipped $skippedFunds records due to missing funds");
         return $processedData;
     }
 
@@ -163,5 +169,6 @@ class importFromJsonToDigitalObjectTable extends Command
         });
 
         $this->info("Successfully inserted " . count($data) . " records into digital_objects table");
+
     }
 }
