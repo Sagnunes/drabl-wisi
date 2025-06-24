@@ -14,7 +14,7 @@ const DIGITAL_COLLECTION_TITLE = 'Coleção Digital';
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: DIGITAL_COLLECTION_TITLE,
-        href: '/digital-collection',
+        href: '/colecao-digital',
     },
 ];
 
@@ -30,7 +30,10 @@ defineProps({
         <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
             <div class="relative min-h-[100vh] flex-1 rounded-xl border border-sidebar-border/70 md:min-h-min dark:border-sidebar-border">
                 <div class="mx-auto max-w-7xl overflow-hidden sm:px-6 lg:px-8">
-                    <h2 class="p-8 text-2xl font-bold tracking-tight text-primary">{{ DIGITAL_COLLECTION_TITLE }}</h2>
+                    <div class="flex flex-row justify-between items-center">
+                        <h2 class="p-8 text-2xl font-bold tracking-tight text-primary">{{ DIGITAL_COLLECTION_TITLE }}</h2>
+                        <a href="https://forms.office.com/e/UgEkk7DwQw" target="_blank" class="text-primary/70 text-base font-bold">Formulário</a>
+                    </div>
                     <div class="-mx-px grid grid-cols-2 sm:mx-0 md:grid-cols-3 lg:grid-cols-5">
                         <div v-for="fund in fundWithDigitalObject" :key="fund.id" class="group relative p-4 sm:p-6">
                             <Link prefetch="hover" cache-for="30s" :href="route('digital-collection.show', fund.id)">

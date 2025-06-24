@@ -10,27 +10,27 @@ import DigitalObjectCard from '@/components/digital-collection/DigitalObjectCard
 import SearchInput from '@/components/digital-collection/SearchInput.vue';
 
 defineOptions({
-    name: 'DigitalCollectionShow',
+    name: 'DigitalCollectionShow'
 });
 
 const props = defineProps({
     fund: { type: Object as PropType<Fund>, required: true },
     collections: { type: Array as PropType<DigitalObject[]>, required: true },
-    pagination: { type: Object as PropType<Pagination>, required: true },
+    pagination: { type: Object as PropType<Pagination>, required: true }
 });
 
-const BASE_ROUTE = '/digital-collection';
+const BASE_ROUTE = '/colecao-digital';
 const MAIN_TITLE = 'Coleção Digital';
 
 const breadcrumbItems = computed((): BreadcrumbItem[] => [
     {
         title: MAIN_TITLE,
-        href: BASE_ROUTE,
+        href: BASE_ROUTE
     },
     {
         title: props.fund.acronym,
-        href: `${BASE_ROUTE}/${props.fund?.id}`,
-    },
+        href: `${BASE_ROUTE}/${props.fund?.id}`
+    }
 ]);
 
 const searchInput = ref('');
@@ -43,8 +43,8 @@ watch(searchInput, (value) => {
         route('digital-collection.show', props.fund?.id),
         { search: value },
         {
-            preserveState: true,
-        },
+            preserveState: true
+        }
     );
 });
 
@@ -58,10 +58,12 @@ function onSearchInput(value: string) {
 
     <AppLayout :breadcrumbs="breadcrumbItems">
         <div class="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
-            <div class="relative min-h-[100vh] flex-1 rounded-xl border border-sidebar-border/70 md:min-h-min dark:border-sidebar-border">
+            <div
+                class="relative min-h-[100vh] flex-1 rounded-xl border border-sidebar-border/70 md:min-h-min dark:border-sidebar-border">
                 <div class="mx-auto max-w-7xl overflow-hidden px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
                     <div class="sm:flex sm:items-baseline sm:justify-between lg:mb-5 lg:items-center">
-                        <h2 class="text-2xl font-bold tracking-tight text-primary">{{ MAIN_TITLE }} - {{ fund?.name }}</h2>
+                        <h2 class="text-2xl font-bold tracking-tight text-primary">{{ MAIN_TITLE }} - {{ fund?.name
+                            }}</h2>
                         <SearchInput :model-value="searchInput" @update:modelValue="onSearchInput" />
                     </div>
                     <p class="my-3 text-xs text-primary">
